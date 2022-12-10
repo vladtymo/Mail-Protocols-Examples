@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01_smtp", "01_smtp\01_smtp.csproj", "{731AC4A9-1516-4494-AFD8-E35507911422}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02_smtp_mailkit", "02_smtp_mailkit\02_smtp_mailkit.csproj", "{AF812D5A-127A-4884-8F23-1906E485536D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{731AC4A9-1516-4494-AFD8-E35507911422}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{731AC4A9-1516-4494-AFD8-E35507911422}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{731AC4A9-1516-4494-AFD8-E35507911422}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF812D5A-127A-4884-8F23-1906E485536D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF812D5A-127A-4884-8F23-1906E485536D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF812D5A-127A-4884-8F23-1906E485536D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF812D5A-127A-4884-8F23-1906E485536D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
