@@ -1,0 +1,30 @@
+﻿<Window x:Class="_01_smtp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_01_smtp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <DockPanel>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+
+            <Label VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0">To:</Label>
+            <TextBox Name="toTxtBox" Margin="5" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="0"></TextBox>
+
+            <Label VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="1">Subject:</Label>
+            <TextBox Name="subjectTxtBox" Margin="5" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="1"></TextBox>
+        </Grid>
+        <TextBlock DockPanel.Dock="Top" TextAlignment="Center" FontWeight="Bold" FontSize="32">Text</TextBlock>
+        <Button Click="Button_Click" DockPanel.Dock="Bottom" Padding="8" FontSize="20" FontWeight="Bold">Send</Button>
+        <TextBox Name="bodyTxtBox" Margin="5" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
+    </DockPanel>
+</Window>
