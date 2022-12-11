@@ -2,6 +2,7 @@
 using MailKit.Net.Imap;
 using MailKit.Search;
 using MailKit.Security;
+using MimeKit;
 using System.Text;
 
 namespace _03_imap_mailkit
@@ -9,8 +10,8 @@ namespace _03_imap_mailkit
     internal class Program
     {
         // ! change the credentials and addresses
-        const string username = "prodoq@gmail.com"; // change here
-        const string password = "kznklnglnraujhbi"; // change here
+        const string username = "<your_email>"; // change here
+        const string password = "<your_password>"; // change here
 
         static void Main(string[] args)
         {
@@ -19,38 +20,45 @@ namespace _03_imap_mailkit
 
             using (var client = new ImapClient())
             {
-                //client.Alert += Client_Alert;
                 client.Connect("imap.gmail.com", 993, SecureSocketOptions.SslOnConnect);
 
                 client.Authenticate(username, password);
 
+                // --------------- get all folders
                 foreach (var item in client.GetFolders(client.PersonalNamespaces[0]))
                 {
                     Console.WriteLine("Folder: " + item.Name);
                 }
 
-                //////// Show Inbox 
-                client.Inbox.Open(FolderAccess.ReadOnly);
-                var uids = client.Inbox.Search(SearchQuery.All); // get all mails
+                // -------------- get all sent messages
+                var folder = client.GetFolder(SpecialFolder.Sent);
+                folder.Open(FolderAccess.ReadWrite);
 
-                foreach (var uid in uids)
+                IList<UniqueId> uids = folder.Search(SearchQuery.All);
+
+                foreach (var i in uids)
                 {
-                    var m = client.Inbox.GetMessage(uid);
-                    // show message subject
-                    Console.WriteLine($"Mail: {m.Subject} - {new string(m.TextBody.Take(50).ToArray())}...");
+                    MimeMessage message = folder.GetMessage(i);
+                    Console.WriteLine($"{message.Date}: {message.Subject} - {new string(message.TextBody.Take(10).ToArray())}...");
                 }
 
-                //////// Delete message
-                client.GetFolder(SpecialFolder.Sent).Open(FolderAccess.ReadWrite);
+                // -------------------- show Inbox 
+                client.Inbox.Open(FolderAccess.ReadOnly);
 
-                var folder = client.GetFolder(SpecialFolder.Sent);
+                foreach (var uid in client.Inbox.Search(SearchQuery.All))
+                {
+                    var m = client.Inbox.GetMessage(uid);
+                    // show message details
+                    Console.WriteLine($"Mail: {m.Subject} - {new string(m.TextBody.Take(10).ToArray())}...");
+                }
 
-                var id = folder.Search(SearchQuery.All)[0];
+                // ---------------------- delete message
+                var id = folder.Search(SearchQuery.All).FirstOrDefault();
                 var mail = folder.GetMessage(id);
 
                 Console.WriteLine(mail.Date + " " + mail.Subject);
 
-                folder.MoveTo(id, client.GetFolder(SpecialFolder.Junk));
+                folder.MoveTo(id, client.GetFolder(SpecialFolder.Junk)); // move to spam
                 folder.AddFlags(id, MessageFlags.Deleted, true);
 
                 Console.WriteLine("Press to exit!");
