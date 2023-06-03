@@ -1,20 +1,7 @@
 ﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace _01_smtp
 {
@@ -23,8 +10,8 @@ namespace _01_smtp
         // generate apps password
         // https://stackoverflow.com/questions/72547853/unable-to-send-email-in-c-sharp-less-secure-app-access-not-longer-available
 
-        const string myMailAddress = "prodoq@gmail.com";
-        const string accountPassword = "qdqsraprlombkfjt";
+        const string myMailAddress = "tmvlad33@gmail.com";
+        const string accountPassword = "gxknljmktrlthlyx";
         public MainWindow()
         {
             InitializeComponent();
