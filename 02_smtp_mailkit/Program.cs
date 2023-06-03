@@ -7,8 +7,8 @@ namespace _02_smtp_mailkit
     internal class Program
     {
         // ! change the credentials and addresses
-        const string username = "<your_email>"; // change here
-        const string password = "<your_password>"; // change here
+        const string username = "<your_email>";     // change here
+        const string password = "<your_password>";  // change here
 
         static void Main(string[] args)
         {
