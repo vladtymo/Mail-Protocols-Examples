@@ -24,6 +24,8 @@ namespace _03_imap_mailkit
 
                 client.Authenticate(username, password);
 
+                // ------------------------------------------------------------------------------
+
                 // --------------- get all folders
                 foreach (var item in client.GetFolders(client.PersonalNamespaces[0]))
                 {
@@ -43,7 +45,7 @@ namespace _03_imap_mailkit
                     Console.WriteLine($"{message.Date}: {message.Subject} - {new string(message.TextBody?.Take(10).ToArray())}...");
                 }
 
-                // -------------------- show Inbox 
+                //// -------------------- show Inbox 
                 client.Inbox.Open(FolderAccess.ReadOnly);
 
                 Console.WriteLine("--------- Inbox:");
@@ -61,8 +63,8 @@ namespace _03_imap_mailkit
 
                 Console.WriteLine(mail.Date + " " + mail.Subject);
 
-                folder.MoveTo(id, client.GetFolder(SpecialFolder.Junk));  // move to spam
-                folder.AddFlags(id, MessageFlags.Seen, false);            // mark as read
+                //folder.MoveTo(id, client.GetFolder(SpecialFolder.Junk));  // move to spam
+                //folder.AddFlags(id, MessageFlags.Seen, false);            // mark as read
                 folder.MoveTo(id, client.GetFolder(SpecialFolder.Trash)); // delete mail
 
                 Console.WriteLine("Press to exit!");
