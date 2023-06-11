@@ -3,6 +3,8 @@ using MailKit.Net.Imap;
 using MailKit.Search;
 using MailKit.Security;
 using MimeKit;
+using System;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace _03_imap_mailkit
@@ -63,15 +65,18 @@ namespace _03_imap_mailkit
 
                 Console.WriteLine(mail.Date + " " + mail.Subject);
 
+                folder.AddFlags(new UniqueId[] { id }, MessageFlags.Deleted, false);
+
+                folder.Expunge();
+
                 //folder.MoveTo(id, client.GetFolder(SpecialFolder.Junk));  // move to spam
                 //folder.AddFlags(id, MessageFlags.Seen, false);            // mark as read
-                folder.MoveTo(id, client.GetFolder(SpecialFolder.Trash)); // delete mail
+                //folder.MoveTo(id, client.GetFolder(SpecialFolder.Trash)); // delete mail
 
                 Console.WriteLine("Press to exit!");
                 Console.ReadKey();
 
-                client.Disconnect(true);
-            }
+            } // Dispose()
         }
     }
 }

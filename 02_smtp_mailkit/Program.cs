@@ -47,8 +47,6 @@ namespace _02_smtp_mailkit
                 //    options.International = true;
 
                 client.Send(message);
-
-                client.Disconnect(true);
             }
         }
     }
