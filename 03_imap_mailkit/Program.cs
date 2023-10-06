@@ -26,64 +26,37 @@ namespace _03_imap_mailkit
 
                 client.Authenticate(username, password);
 
-                //foreach (var fl in client.GetFolders(client.PersonalNamespaces[0]))
-                //{
-                //    Console.WriteLine(fl.Name);
-                //}
-
-                var sendFolder = client.GetFolder(SpecialFolder.Sent);
-
-                sendFolder.Open(FolderAccess.ReadWrite);
-
-                //foreach (var item in sendFolder.Search(SearchQuery.All))
-                //{
-                //    var mail = sendFolder.GetMessage(item);
-
-                //    Console.WriteLine(mail.Subject);
-                //}
-                
-                var inbox = client.Inbox;
-
-                inbox.Open(FolderAccess.ReadWrite);
-
-                foreach (var i in inbox.Search(SearchQuery.DeliveredAfter(DateTime.Today)))
-                {
-                    var m = inbox.GetMessage(i);
-
-                    Console.WriteLine($"Mail: {m.Subject}");
-                }
-
                 // ------------------------------------------------------------------------------
 
                 // --------------- get all folders
-                //foreach (var item in client.GetFolders(client.PersonalNamespaces[0]))
-                //{
-                //    Console.WriteLine("Folder: " + item.Name);
-                //}
+                foreach (var item in client.GetFolders(client.PersonalNamespaces[0]))
+                {
+                    Console.WriteLine("Folder: " + item.Name);
+                }
 
                 //// -------------- get all sent messages
                 var folder = client.GetFolder(SpecialFolder.Sent);
-                //folder.Open(FolderAccess.ReadWrite);
+                folder.Open(FolderAccess.ReadWrite);
 
-                //IList<UniqueId> uids = folder.Search(SearchQuery.All);
+                IList<UniqueId> uids = folder.Search(SearchQuery.All);
 
-                //Console.WriteLine("--------- Sent Mailbox:");
-                //foreach (var i in uids)
-                //{
-                //    MimeMessage message = folder.GetMessage(i);
-                //    Console.WriteLine($"{message.Date}: {message.Subject} - {new string(message.TextBody?.Take(10).ToArray())}...");
-                //}
+                Console.WriteLine("--------- Sent Mailbox:");
+                foreach (var i in uids)
+                {
+                    MimeMessage message = folder.GetMessage(i);
+                    Console.WriteLine($"{message.Date}: {message.Subject} - {new string(message.TextBody?.Take(10).ToArray())}...");
+                }
 
                 ////// -------------------- show Inbox 
-                //client.Inbox.Open(FolderAccess.ReadOnly);
+                client.Inbox.Open(FolderAccess.ReadOnly);
 
-                //Console.WriteLine("--------- Inbox:");
-                //foreach (var uid in client.Inbox.Search(SearchQuery.All))
-                //{
-                //    var m = client.Inbox.GetMessage(uid);
-                //    // show message details
-                //    Console.WriteLine($"Mail: {m.Subject} - {new string(m.TextBody.Take(10).ToArray())}...");
-                //}
+                Console.WriteLine("--------- Inbox:");
+                foreach (var uid in client.Inbox.Search(SearchQuery.All))
+                {
+                    var m = client.Inbox.GetMessage(uid);
+                    // show message details
+                    Console.WriteLine($"Mail: {m.Subject} - {new string(m.TextBody.Take(10).ToArray())}...");
+                }
 
                 //// ---------------------- delete message
                 folder.Open(FolderAccess.ReadWrite);
