@@ -10,8 +10,8 @@ namespace _01_smtp
         // generate apps password
         // https://stackoverflow.com/questions/72547853/unable-to-send-email-in-c-sharp-less-secure-app-access-not-longer-available
 
-        const string myMailAddress = "tmvlad33@gmail.com";
-        const string accountPassword = "gxknljmktrlthlyx";
+        const string myMailAddress = "vlad.tmsh@gmail.com";
+        const string accountPassword = "tkifcinpvlcrygle";
         public MainWindow()
         {
             InitializeComponent();
@@ -44,7 +44,7 @@ namespace _01_smtp
                 EnableSsl = true
             };
 
-            client.Send(mail);
+            client.SendAsync(mail, null);
         }
     }
 }
