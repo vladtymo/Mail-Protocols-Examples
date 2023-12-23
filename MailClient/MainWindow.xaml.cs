@@ -23,8 +23,8 @@ namespace MailClient
     /// </summary>
     public partial class MainWindow : Window
     {
-        const string username = "tmvlad33@gmail.com"; // change here
-        const string password = "gxknljmktrlthlyx"; // change here
+        const string username = "vlad.tmsh@gmail.com"; // change here
+        const string password = "tkifcinpvlcrygle"; // change here
 
         private ImapClient client = new();
 
@@ -41,7 +41,5 @@ namespace MailClient
                 folderList.Items.Add(fl.Name);
             }
         }
-
-
     }
 }

@@ -45,6 +45,12 @@ namespace _01_smtp
             };
 
             client.SendAsync(mail, null);
+
+            // open new window
+            var newWindow = new MainWindow();
+            newWindow.Show();
+
+            this.Close();
         }
     }
 }
